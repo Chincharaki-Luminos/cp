@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrity Recommended Shows and Music</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .celeb-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .celeb {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1 1 200px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .celeb:hover {
+            background-color: #e0e0e0;
+        }
+        .recommendations {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .recommendations.active {
+            display: block;
+        }
+        .recommendations h2 {
+            margin-top: 0;
+            color: #555;
+        }
+        .recommendations a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .recommendations a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Celebrity Recommended Shows and Music</h1>
+    <div class="container">
+        <div class="celeb-list">
+            <div class="celeb" onclick="showRecommendations('elon-musk')">Elon Musk</div>
+            <div class="celeb" onclick="showRecommendations('taylor-swift')">Taylor Swift</div>
+            <div class="celeb" onclick="showRecommendations('dwayne-johnson')">Dwayne Johnson</div>
+            <!-- Add more celebrities here -->
+        </div>
+        <div id="recommendations" class="recommendations">
+            <h2 id="celeb-name"></h2>
+            <p><strong>TV Show:</strong> <span id="tv-show"></span> - <a id="tv-show-link" href="#" target="_blank">Watch</a></p>
+            <p><strong>Movie:</strong> <span id="movie"></span> - <a id="movie-link" href="#" target="_blank">Watch</a></p>
+            <p><strong>Song:</strong> <span id="song"></span> - <a id="song-link" href="#" target="_blank">Listen</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Data structure for celebrity recommendations
+        const recommendationsData = {
+            'elon-musk': {
+                name: 'Elon Musk',
+                tvShow: 'Rick and Morty',
+                tvShowLink: 'https://www.imdb.com/title/tt2861424/',
+                movie: 'The Matrix',
+                movieLink: 'https://www.imdb.com/title/tt0133093/',
+                song: 'Bohemian Rhapsody - Queen',
+                songLink: 'https://www.youtube.com/watch?v=fJ9rUzIMcZQ'
+            },
+            'taylor-swift': {
+                name: 'Taylor Swift',
+                tvShow: 'Friends',
+                tvShowLink: 'https://www.imdb.com/title/tt0108778/',
+                movie: 'The Devil Wears Prada',
+                movieLink: 'https://www.imdb.com/title/tt0458352/',
+                song: 'Hey Jude - The Beatles',
+                songLink: 'https://www.youtube.com/watch?v=A_MjCqQoLLA'
+            },
+            'dwayne-johnson': {
+                name: 'Dwayne Johnson',
+                tvShow: 'The Office',
+                tvShowLink: 'https://www.imdb.com/title/tt0386676/',
+                movie: 'Jumanji: Welcome to the Jungle',
+                movieLink: 'https://www.imdb.com/title/tt2283362/',
+                song: 'Sweet Child O\' Mine - Guns N\' Roses',
+                songLink: 'https://www.youtube.com/watch?v=1w7OgIMMRc4'
+            }
+            // Add more celebrities and their recommendations here
+        };
+
+        // Function to display recommendations
+        function showRecommendations(celebId) {
+            const data = recommendationsData[celebId];
+            if (data) {
+                document.getElementById('celeb-name').textContent = data.name;
+                document.getElementById('tv-show').textContent = data.tvShow;
+                document.getElementById('tv-show-link').href = data.tvShowLink;
+                document.getElementById('movie').textContent = data.movie;
+                document.getElementById('movie-link').href = data.movieLink;
+                document.getElementById('song').textContent = data.song;
+                document.getElementById('song-link').href = data.songLink;
+                
+                const recDiv = document.getElementById('recommendations');
+                recDiv.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
